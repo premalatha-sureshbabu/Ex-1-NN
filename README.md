@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME</H3>PREMA LATHA S
+<H3>ENTER YOUR REGISTER NO.</H3>212222230112
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE</H3>07.03.2025
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -38,11 +38,42 @@ STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
 TYPE YOUR CODE HERE
+```
+import pandas as pd                                                 # Importing Libraries
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
 
+df.isnull().sum()                                                   # Finding Missing Values
+
+df.duplicated().sum()                                               # Check For Duplicate
+
+df=df.drop(['Surname', 'Geography','Gender'], axis=1)               # Remove Unnecessary Columns
+scaler=StandardScaler()                                             # Normalize the dataset
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values                     # Split the dataset into input and output
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)   # Splitting the data for training & Testing
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)                     # X Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)                   # Y Train and Test
+```
 
 ## OUTPUT:
 SHOW YOUR OUTPUT HERE
+![Screenshot 2025-03-07 112659](https://github.com/user-attachments/assets/90c8ff0a-0801-490e-9942-f65c948e2222)
 
+![Screenshot 2025-03-07 112707](https://github.com/user-attachments/assets/c0a49bc2-ad2c-4a36-89bd-31d58e32900b)
+
+![Screenshot 2025-03-07 112715](https://github.com/user-attachments/assets/65dfb3ae-626a-447f-bf4b-5dbf95efd963)
+
+![Screenshot 2025-03-07 112720](https://github.com/user-attachments/assets/fdbaecb1-d673-4e49-982c-b46af566c3b2)
+
+![Screenshot 2025-03-07 112734](https://github.com/user-attachments/assets/499a3b2f-afe1-4af1-a610-7a553f48ec41)
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
